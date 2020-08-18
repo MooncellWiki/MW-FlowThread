@@ -11,6 +11,12 @@ class Hooks {
 		if (!Helper::canEverPostOnTitle($title)) {
 			return true;
 		}
+		
+		// If the comments are globally disabled, do not load
+		// FlowThread at all.
+		if (wfMessage('flowthread-disabled-globally')->text() != '') {
+			return true;
+		}
 
 		// Do not display when printing
 		if ($output->isPrintable()) {
