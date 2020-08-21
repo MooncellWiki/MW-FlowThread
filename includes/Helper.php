@@ -145,6 +145,7 @@ class Helper {
 			NS_TEMPLATE,
 			NS_CATEGORY,
 			NS_FILE,
+			NS_USER
 		);
 		if (defined('NS_MODULE')) {
 			$ret[] = NS_MODULE;
