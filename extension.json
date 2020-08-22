@@ -98,7 +98,8 @@
         "flowthread-ui-nocontent",
         "flowthread-ui-popular",
         "flowthread-ui-networkerror",
-        "flowthread-ui-useroptout"
+        "flowthread-ui-useroptout",
+        "flowthread-disabled-globally"
       ],
       "targets": [
         "desktop",
