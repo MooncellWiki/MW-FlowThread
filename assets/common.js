@@ -179,7 +179,8 @@ function createReplyBox(thread) {
 
   replyBox.onSubmit = function() {
     var text = replyBox.getValue().trim();
-    if(mw.msg('flowthread-disabled-globally') != "⧼flowthread-disabled-globally⧽") {
+    var disableMsg = mw.msg('flowthread-disabled-globally');
+    if(disableMsg != "⧼flowthread-disabled-globally⧽" && disableMsg.length != 0) {
       showMsgDialog("评论区已被关闭");
       return;
     }
