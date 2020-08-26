@@ -14,7 +14,7 @@ class Hooks {
 		
 		// If the comments are globally disabled, do not load
 		// FlowThread at all.
-		if (wfMessage('flowthread-disabled-globally')->text() != '') {
+		if (wfMessage('flowthread-disabled-globally')->inLanguage("zh-cn")->text() != '') {
 			return true;
 		}
 
