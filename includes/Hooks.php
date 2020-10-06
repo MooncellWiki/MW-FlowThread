@@ -93,7 +93,42 @@ class Hooks {
 			$toolbox['usercomments']['id'] = 't-usercomments';
 		}
 	}
+	
+	public static function onSkinTemplateNavigation_Universal( SkinTemplate $sktemplate, array &$links ) {
+		$commentAdmin = $skinTemplate->getUser()->isAllowed('commentadmin-restricted');
+		$user = $skinTemplate->getRelevantUser();
+		
+		//TODO: Fix sidebar "User Comments" button
+		/*
+		if ($user && $commentAdmin) {
+			$nav_urls = $tpl->get('nav_urls');
+			$nav_urls['usercomments'] = [
+				'text' => wfMessage('sidebar-usercomments')->text(),
+				'href' => \SpecialPage::getTitleFor('FlowThreadManage')->getLocalURL(array(
+					'user' => $user->getName(),
+				)),
+			];
+			$tpl->set('nav_urls', $nav_urls);
+		}
+		*/
 
+		$title = $skinTemplate->getRelevantTitle();
+		if (Helper::canEverPostOnTitle($title) && ($commentAdmin || Post::userOwnsPage($skinTemplate->getUser(), $title))) {
+		    // add a new action
+		    $links['actions']['flowthreadcontrol'] = [
+		        'id' => 'ca-flowthreadcontrol',
+				'text' => wfMessage('action-flowthreadcontrol')->text(),
+				'href' => \SpecialPage::getTitleFor('FlowThreadControl', $title->getPrefixedDBKey())->getLocalURL()
+			];
+		}
+
+		return true;
+	}
+	
+	//Deprecated in MW 1.35+. See https://www.mediawiki.org/wiki/Manual:Hooks/SkinTemplateOutputPageBeforeExec
+	//Use onSkinTemplateNavigation_Universal instead.
+	
+	/*
 	public static function onSkinTemplateOutputPageBeforeExec(&$skinTemplate, &$tpl) {
 		$commentAdmin = $skinTemplate->getUser()->isAllowed('commentadmin-restricted');
 		$user = $skinTemplate->getRelevantUser();
@@ -122,4 +157,5 @@ class Hooks {
 
 		return true;
 	}
+	*/
 }
