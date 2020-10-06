@@ -94,7 +94,7 @@ class Hooks {
 		}
 	}
 	
-	public static function onSkinTemplateNavigation_Universal( SkinTemplate $skinTemplate, array &$links ) {
+	public static function onSkinTemplateNavigation_Universal(\SkinTemplate $skinTemplate, array &$links) {
 		$commentAdmin = $skinTemplate->getUser()->isAllowed('commentadmin-restricted');
 		$user = $skinTemplate->getRelevantUser();
 		
