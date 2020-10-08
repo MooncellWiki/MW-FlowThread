@@ -68,6 +68,9 @@
     ],
     "SkinTemplateNavigation::Universal": [
       "FlowThread\\Hooks::onSkinTemplateNavigation_Universal"
+    ],
+    "SidebarBeforeOutput": [
+      "FlowThread\\Hooks::onSidebarBeforeOutput"
     ]
   },
   "ResourceModules": {
