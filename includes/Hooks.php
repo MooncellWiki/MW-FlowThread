@@ -95,15 +95,15 @@ class Hooks {
 	}
 	
 	public static function onSidebarBeforeOutput(\Skin $skin, &$sidebar) {
-	    if ( version_compare( MW_VERSION, '1.35', '<' ) ) {
+		if ( version_compare( MW_VERSION, '1.35', '<' ) ) {
 			return false;
 		}
 		
-	    $commentAdmin = $skin->getUser()->isAllowed('commentadmin-restricted');
+		$commentAdmin = $skin->getUser()->isAllowed('commentadmin-restricted');
 		$user = $skin->getRelevantUser();
 		
 		if ($user && $commentAdmin) {
-		    	$sidebar['TOOLBOX'][] = [
+				$sidebar['TOOLBOX'][] = [
 				'text' => wfMessage('sidebar-usercomments')->text(),
 				'href' => \SpecialPage::getTitleFor('FlowThreadManage')->getLocalURL(array(
 					'user' => $user->getName(),
@@ -113,7 +113,7 @@ class Hooks {
 	}
 	
 	public static function onSkinTemplateNavigation_Universal(\SkinTemplate $skinTemplate, array &$links) {
-	    if ( version_compare( MW_VERSION, '1.35', '<' ) ) {
+		if ( version_compare( MW_VERSION, '1.35', '<' ) ) {
 			return false;
 		}
 		
@@ -122,9 +122,9 @@ class Hooks {
 
 		$title = $skinTemplate->getRelevantTitle();
 		if (Helper::canEverPostOnTitle($title) && ($commentAdmin || Post::userOwnsPage($skinTemplate->getUser(), $title))) {
-		    // add a new action
-		    $links['actions']['flowthreadcontrol'] = [
-		        'id' => 'ca-flowthreadcontrol',
+			// add a new action
+			$links['actions']['flowthreadcontrol'] = [
+				'id' => 'ca-flowthreadcontrol',
 				'text' => wfMessage('action-flowthreadcontrol')->text(),
 				'href' => \SpecialPage::getTitleFor('FlowThreadControl', $title->getPrefixedDBKey())->getLocalURL()
 			];
