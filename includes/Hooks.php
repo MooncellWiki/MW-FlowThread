@@ -95,10 +95,6 @@ class Hooks {
 	}
 	
 	public static function onSidebarBeforeOutput(\Skin $skin, &$sidebar) {
-		if ( version_compare( MW_VERSION, '1.35', '<' ) ) {
-			return false;
-		}
-		
 		$commentAdmin = $skin->getUser()->isAllowed('commentadmin-restricted');
 		$user = $skin->getRelevantUser();
 		
